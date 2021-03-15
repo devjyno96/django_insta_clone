@@ -2,112 +2,77 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Bulma!</title>
     <link rel="stylesheet" href="{% static 'css/bulma.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-  </head>
-  <body>
-<div class="card">
-  <div class="card-content">
-    <p class="title">
-      “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
-    </p>
-    <p class="subtitle">
-      Jeff Atwood
-    </p>
-  </div>
-  <footer class="card-footer">
-    <p class="card-footer-item">
-      <span>
-        View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
-      </span>
-    </p>
-    <p class="card-footer-item">
-      <span>
-        Share on <a href="#">Facebook</a>
-      </span>
-    </p>
-  </footer>
-</div>
+          rel="stylesheet">
+</head>
+<body>
 
-  <section class="section">
+<section class="section">
     <div class="container">
+        <div class="columns is-mobile has-text-centered">
+            <div class="column is-half is-offset-one-quarter">
+                <div class="card">
+                    <div class="card-content">
+                        <form method="post" action="" role="form">
+                            {% csrf_token %}
+                            <h3 class="title is-3">Login</h3>
 
-<div class="columns is-mobile has-text-centered">
-  <div class="column is-half is-offset-one-quarter">
-
-    <div class="card">
-    <div class="card-content">
-
-          <form method="post" action="" role="form">
-          {% csrf_token %}
-           <h3 class="title is-3">Login</h3>
-
-            <div class="field">
-              <p class="control has-icons-left">
-              <label class="label is-medium">Username</label>
-                {{ form.username }}
-                <span class="icon is-small is-left">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <label class="label is-medium">Username</label>
+                                    {{ form.username }}
+                                    <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
-        </p>
-          </div>
+                                </p>
+                            </div>
 
-              <div class="field">
-              <p class="control has-icons-left">
-              <label class="label is-medium">Password</label>
-                {{ form.password }}
-                <span class="icon is-small is-left">
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <label class="label is-medium">Password</label>
+                                    {{ form.password }}
+                                    <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
-        </p>
-          </div>
+                                </p>
+                            </div>
 
-      {% if form.errors %}
-      <div class="row">
-        <div class="col s12">
-          <span style="color: red; font-weight: bold;">Your username or password did not match.</span>
+                            {% if form.errors %}
+                            <div class="row">
+                                <div class="col s12">
+                                    <span style="color: red; font-weight: bold;">Your username or password did not match.</span>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <div class="field">
+                                <p class="control">
+                                    <button type="submit" value="login" class="button is-success">
+                                        Login
+                                    </button>
+                                </p>
+                            </div>
+
+                            <input type="hidden" name="next" value="{{ next }}">
+
+
+                            <a href="{% url 'signup' %}" class="button is-info">Create an account</a>
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      {% endif %}
-
-      <div class="field">
-      <p class="control">
-        <button type="submit" value="login" class="button is-success">
-          Login
-        </button>
-      </p>
     </div>
+</section>
 
-    <input type="hidden" name="next" value="{{ next }}">
-
-
-
-    <a href="{% url 'signup' %}" class="button is-info">Create an account</a>
-
-
-  </form>
-
-
-
-
-    </div>
-    </div>
-    
-
-
-  </div>
-</div>
-
-
-    </div>
-  </section>
-
-  </body>
+</body>
 </html>
 

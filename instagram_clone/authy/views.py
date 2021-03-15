@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from authy.forms import SignupForm, ChangePasswordForm, EditProfileForm
 from django.contrib.auth.models import User
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 
-from authy.models import Profile
+from .models import Profile
+from .forms import SignupForm, ChangePasswordForm, EditProfileForm
 #from post.models import Post, Follow, Stream
 from django.db import transaction
 from django.template import loader
