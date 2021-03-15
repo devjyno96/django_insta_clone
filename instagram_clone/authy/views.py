@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 
 from authy.models import Profile
-from post.models import Post, Follow, Stream
+#from post.models import Post, Follow, Stream
 from django.db import transaction
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
