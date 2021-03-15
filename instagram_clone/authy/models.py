@@ -1,10 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from post.models import Post
 
 from django.db.models.signals import post_save
 
-from PIL import Image
 from django.conf import settings
 import os
 
