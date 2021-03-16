@@ -10,7 +10,11 @@
         <article class="media">
             <div class="media-left">
                 <figure class="image is-256x256">
-                    <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png">
+                    {% if profile.picture %}
+                    <img class="is-rounded" width="256" height="256" src="{{ profile.picture.url }}">
+                    {% else %}
+                    <img class="is-rounded" width="256" height="256" src="https://bulma.io/images/placeholders/256x256.png">
+                    {% endif %}
                 </figure>
             </div>
 
@@ -34,33 +38,35 @@
                     {% endif %}
                 </div>
                 {% endif %}
-            <nav class="level is-mobile">
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">posts</p>
-                        <p class="title">{{ posts_count }}</p>
+                <nav class="level is-mobile">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">posts</p>
+                            <p class="title">{{ posts_count }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Following</p>
-                        <p class="title">{{ following_count }}</p>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Following</p>
+                            <p class="title">{{ following_count }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading">Followers</p>
-                        <p class="title">{{ followers_count }}</p>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Followers</p>
+                            <p class="title">{{ followers_count }}</p>
+                        </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
 
-            <p class="subtitle is-5">{% if profile.profile_info %}{{ profile.profile_info }}{%endif%}</p>
-            {% if user.is_authenticated and user == profile.user %}
-            <button class="button">Edit Profile</button>
-            {% endif %}
+                <p class="subtitle is-5">{% if profile.profile_info %}{{ profile.profile_info }}{%endif%}</p>
+                {% if user.is_authenticated and user == profile.user %}
+                <a href="{% url 'edit-profile'%}">
+                    <button class="button">Edit Profile</button>
+                </a>
+                {% endif %}
             </div>
-    </article>
+        </article>
     </div>
 </section>
 
