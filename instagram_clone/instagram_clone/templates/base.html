@@ -26,7 +26,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item">
+            <a href="{% url 'index'%}" class="navbar-item">
                 <span class="material-icons">home</span>
                 Home
             </a>
@@ -47,7 +47,7 @@
                 <span class="material-icons">face</span>
                 Profile
             </a>
-            <a href="{% url 'newpost' %}"  class="navbar-item">
+            <a href="{% url 'newpost' %}" class="navbar-item">
                 <span class="material-icons">perm_media</span>
                 New post
             </a>
@@ -68,7 +68,7 @@
                         Report an issue
                     </a>
                     <hr class="navbar-divider">
-                    <a class="navbar-item">
+                    <a href="{% url 'logout'%}" class="navbar-item">
                         Log out
                     </a>
                 </div>
@@ -78,6 +78,11 @@
 
     </div>
 </nav>
+
+
+{% block banner %}
+{% endblock %}
+
 <section class="section">
     <div class="container">
         {% block content %}

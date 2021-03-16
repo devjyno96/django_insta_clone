@@ -12,8 +12,8 @@
         <div class="card">
             <div class="card-image">
 
-                <figure class="image is-5by3">
-                    <a href="{% url 'postdetails' post_item.id %}">
+                <figure class="image is-4by3">
+                    <a href="{{ post_item.get_absolute_url }}">
                         <img src="{{ post_item.picture.url }}" alt="Placeholder image">
                     </a>
                 </figure>

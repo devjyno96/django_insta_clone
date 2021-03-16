@@ -65,7 +65,7 @@ def NewPost(request):
             #     file_instance.save()
             #     files_objs.append(file_instance)
 
-            p, created = Post.objects.get_or_create(picture=picture,  caption=caption, user_id=user.id)
+            p, created = Post.objects.get_or_create(picture=picture, caption=caption, user_id=user.id)
             p.tags.set(tags_objs)
 
             p.save()
@@ -78,3 +78,17 @@ def NewPost(request):
     }
 
     return render(request, 'newpost.html', context)
+
+
+def tags(request, tag_slug):
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    posts = Post.objects.filter(tags=tag).order_by('-posted')
+
+    template = loader.get_template('tag.html')
+
+    context = {
+        'posts': posts,
+        'tag': tag,
+    }
+
+    return HttpResponse(template.render(context, request))
