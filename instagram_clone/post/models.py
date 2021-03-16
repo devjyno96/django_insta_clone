@@ -23,11 +23,14 @@ class Tag(models.Model):
     def get_absolute_url(self):
         return reversed('tags', arg=[self.slug])
 
+    def __str__(self):
+        return self.title
+
     # slug? - https://itmining.tistory.com/119
-    def __str__(self, *args, **kargs):
+    def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        return super().save(*args, **kargs)
+        return super().save(*args, **kwargs)
 
 
 class Post(models.Model):
