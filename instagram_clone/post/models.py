@@ -71,6 +71,12 @@ class Stream(models.Model):
             stream.save()
 
 
+class Likes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_likes')
+
+
+
 # https://docs.djangoproject.com/en/3.1/ref/signals/#post-save
 # https://dgkim5360.tistory.com/entry/django-signal-example
 # 이게 뭐냐? django signal

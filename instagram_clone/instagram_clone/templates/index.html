@@ -38,6 +38,11 @@
                         <br>
                         <strong><small>{{ post_item.posted }}</small></strong>
                     </div>
+                    <div class="media-right">
+                        <a href="{% url 'postlike' post_item.id %}"><i class="material-icons has-text-danger">favorite</i>
+                            <p>{{ post_item.likes }}Likes</p>
+                        </a>
+                    </div>
 
                 </div>
 
