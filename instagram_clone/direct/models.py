@@ -13,7 +13,7 @@ class Message(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
 
-    def send_message(self, from_user, to_user, body):
+    def send_message(from_user, to_user, body):
         sender_message = Message(
             user=from_user,
             sender=from_user,
@@ -25,15 +25,14 @@ class Message(models.Model):
         recipient_message = Message(
             user=to_user,
             sender=from_user,
-            recipient=from_user,
             body=body,
-        )
+            recipient=from_user, )
         recipient_message.save()
+        return sender_message
 
-    def get_messages(self, user):
+    def get_messages(user):
+        messages = Message.objects.filter(user=user).values('recipient').annotate(last=Max('date')).order_by('-last')
         users = []
-        messages = Message.object.filter(user=user).values('recipient').annotate(Last=max('date')).order_by('-last')
-
         for message in messages:
             users.append({
                 'user': User.objects.get(pk=message['recipient']),
