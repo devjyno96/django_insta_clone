@@ -26,6 +26,7 @@ def index(request):
     template = loader.get_template('index.html')
 
     context = {
+        'user' : user,
         'post_items': post_items,
     }
 
@@ -34,6 +35,7 @@ def index(request):
 
 @login_required
 def PostDetails(request, post_id):
+    user = request.user
     post = get_object_or_404(Post, id=post_id)
     favorite = False
 
@@ -47,6 +49,7 @@ def PostDetails(request, post_id):
     template = loader.get_template('post_detail.html')
 
     context = {
+        'user' : user,
         'post': post,
         'favorited': favorite,
     }
