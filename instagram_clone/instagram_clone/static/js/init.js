@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	const modal = $('.modal');
-	slideIndex = 1;
+	var slideIndex = 1;
 
 	$('.showModal').click(function(event){
 

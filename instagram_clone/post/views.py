@@ -8,7 +8,7 @@ from django.urls import reverse
 from .forms import NewPostForm
 from comment.forms import CommentForm
 
-from .models import Stream, Post, Tag, Likes
+from .models import Stream, Post, Tag, Likes, PostFileContent
 from authy.models import Profile
 from comment.models import Comment
 
@@ -87,7 +87,7 @@ def NewPost(request):
     if request.method == 'POST':
         form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
-            picture = form.cleaned_data.get('picture')
+            files = request.FILES.getlist('content')
             caption = form.cleaned_data.get('caption')
             tags_form = form.cleaned_data.get('tags')
 
@@ -97,22 +97,24 @@ def NewPost(request):
                 t, created = Tag.objects.get_or_create(title=tag)
                 tags_objs.append(t)
 
-            # for file in files:
-            #     file_instance = PostFileContent(file=file, user=user)
-            #     file_instance.save()
-            #     files_objs.append(file_instance)
+            for file in files:
+                file_instance = PostFileContent(file=file, user=user)
+                file_instance.save()
+                files_objs.append(file_instance)
 
-            p, created = Post.objects.get_or_create(picture=picture, caption=caption, user_id=user.id)
+            p, created = Post.objects.get_or_create(caption=caption, user=user)
             p.tags.set(tags_objs)
+            p.content.set(files_objs)
 
             p.save()
             return redirect('index')
+
     else:
         form = NewPostForm()
 
-    context = {
-        'form': form,
-    }
+        context = {
+            'form': form,
+        }
 
     return render(request, 'newpost.html', context)
 
