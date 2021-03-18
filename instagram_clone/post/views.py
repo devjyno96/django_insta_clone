@@ -11,12 +11,15 @@ from comment.forms import CommentForm
 from .models import Stream, Post, Tag, Likes, PostFileContent
 from authy.models import Profile
 from comment.models import Comment
+from stories.models import Story, StoryStream
 
 
 @login_required
 def index(request):
     user = request.user
     posts = Stream.objects.filter(user=user)
+
+    stories = StoryStream.objects.filter(user=user)
 
     group_ids = []
 
@@ -30,6 +33,7 @@ def index(request):
     context = {
         'user': user,
         'post_items': post_items,
+        'stories': stories,
     }
 
     return HttpResponse(template.render(context, request))
