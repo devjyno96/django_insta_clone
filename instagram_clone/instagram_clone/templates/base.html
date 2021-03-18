@@ -35,9 +35,12 @@
                 <span class="material-icons">explore</span>
                 Explore
             </a>
-            <a class="navbar-item">
+            <a href="{% url 'show-notifications'%}" class="navbar-item">
                 <span class="material-icons">notifications</span>
                 Notifications
+                {% if count_notifications %}
+                 - {{ count_notifications }}</span>
+                {% endif %}
             </a>
             <a href="{% url 'inbox'%}" class="navbar-item">
                 <span class="material-icons">inbox</span>
