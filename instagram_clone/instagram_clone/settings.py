@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'direct',
     'notifications',
     'stories',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_URL = '/user/login/'
+
+
+CELERY_BROKER_URL = 'amqp://localhost:5672'
