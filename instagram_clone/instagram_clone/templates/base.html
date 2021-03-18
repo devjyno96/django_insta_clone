@@ -39,14 +39,14 @@
                 <span class="material-icons">notifications</span>
                 Notifications
                 {% if count_notifications %}
-                 - {{ count_notifications }}</span>
+                - {{ count_notifications }}</span>
                 {% endif %}
             </a>
             <a href="{% url 'inbox'%}" class="navbar-item">
                 <span class="material-icons">inbox</span>
                 Inbox
                 {% if directs_count %}
-                 - {{ directs_count }}</span>
+                - {{ directs_count }}</span>
                 {% endif %}
             </a>
             <a class="navbar-item">
@@ -83,9 +83,8 @@
                         </a>
                     </div>
                 </div>
+            </a>
         </div>
-
-
     </div>
 </nav>
 
@@ -106,4 +105,7 @@
     </div>
 </section>
 </body>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static 'js/init.js' %}"></script>
+<script src="{% static 'js/slider.js' %}"></script>
 </html>
